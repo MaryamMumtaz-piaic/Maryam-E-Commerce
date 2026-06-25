@@ -1,0 +1,43 @@
+{
+  "name": "mariam-shop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx scripts/seed.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "tsx scripts/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.2",
+    "next": "^16.2.9",
+    "next-auth": "^5.0.0-beta.31",
+    "openai": "^6.44.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "stripe": "^22.2.3",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^16.2.9",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
