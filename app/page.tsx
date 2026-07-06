@@ -7,7 +7,9 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SearchBar } from "@/components/layout/SearchBar";
 import { ArrowRight, ShieldIcon, TruckIcon, SparkleIcon } from "@/components/ui/icons";
 
-const HERO_IMG = "?auto=format&fit=crop&w=1400&q=80";
+// Fixed hero image standard: every slide delivered at identical 16:9 dimensions,
+// auto-cropped to the most relevant region so any source image fits without distortion.
+const HERO_IMG = "?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=80";
 
 const SLIDES: HeroSlide[] = [
   {

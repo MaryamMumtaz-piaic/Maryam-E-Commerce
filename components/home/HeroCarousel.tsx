@@ -92,9 +92,9 @@ export function HeroCarousel({
             </div>
           </div>
 
-          {/* Right: product image only — no card, no frame */}
+          {/* Right: product image only — fixed-size container, identical on every slide */}
           <div className="order-1 lg:order-2">
-            <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
               {slides.map((slide, i) => (
                 <Image
                   key={i}
@@ -104,7 +104,7 @@ export function HeroCarousel({
                   priority={i <= 1}
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className={cn(
-                    "object-contain object-center transition-opacity duration-[600ms] ease-in-out",
+                    "object-cover object-center transition-opacity duration-[600ms] ease-in-out",
                     i === index ? "hero-image opacity-100" : "pointer-events-none opacity-0",
                   )}
                   aria-hidden={i !== index}

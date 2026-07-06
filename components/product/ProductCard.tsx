@@ -16,6 +16,9 @@ export function ProductCard({ product }: { product: ProductView }) {
   const wished = useWishlist((s) => s.items.some((i) => i.id === product.id));
 
   const onSale = product.compareAt != null && product.compareAt > product.price;
+  const discountPct = onSale
+    ? Math.round(((product.compareAt! - product.price) / product.compareAt!) * 100)
+    : 0;
 
   return (
     <div className="group relative flex flex-col">
@@ -31,8 +34,8 @@ export function ProductCard({ product }: { product: ProductView }) {
         </Link>
 
         {onSale && (
-          <span className="absolute left-3 top-3 rounded-full bg-ink px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
-            Sale
+          <span className="absolute left-3 top-3 rounded-full bg-[var(--color-gold)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white shadow-sm">
+            {discountPct}% OFF
           </span>
         )}
 

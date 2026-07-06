@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/providers/Providers";
 import { ChatWidget } from "@/components/chat/ChatWidget";
@@ -31,6 +32,7 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-surface text-ink antialiased">
         <Providers>
+          <AnnouncementBar />
           <Navbar categories={categories} session={session} />
           <main>{children}</main>
           <Footer categories={categories} />
