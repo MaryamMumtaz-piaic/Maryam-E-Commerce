@@ -57,6 +57,38 @@ body {
   animation: fade-in 0.6s ease forwards;
 }
 
+@keyframes hero-text-in {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes hero-image-in {
+  from { opacity: 0; transform: translateX(40px) scale(1.02); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+.hero-text {
+  animation: hero-text-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-text > * {
+  opacity: 0;
+  animation: hero-text-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-text > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.15s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.25s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.35s; }
+.hero-image {
+  animation: hero-image-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-text,
+  .hero-text > *,
+  .hero-image {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

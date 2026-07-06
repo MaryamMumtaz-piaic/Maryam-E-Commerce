@@ -7,55 +7,47 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SearchBar } from "@/components/layout/SearchBar";
 import { ArrowRight, ShieldIcon, TruckIcon, SparkleIcon } from "@/components/ui/icons";
 
-const HERO_IMG = "?auto=format&fit=crop&w=1920&q=80";
+const HERO_IMG = "?auto=format&fit=crop&w=1400&q=80";
 
 const SLIDES: HeroSlide[] = [
   {
     eyebrow: "Electronics · Up to 40% Off",
     title: "Sound without limits.",
     subtitle:
-      "Premium wireless headphones, earbuds, and smart devices. Save up to 40% during our Tech Week event — free shipping on every order.",
-    cta: { label: "Shop Now", href: "/categories/electronics" },
-    image: "https://images.unsplash.com/photo-1498049794561-7780e7231661" + HERO_IMG,
+      "Premium wireless headphones engineered for pure, immersive sound. Save up to 40% during Tech Week.",
+    cta: { label: "Buy Now", href: "/categories/electronics" },
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e" + HERO_IMG,
   },
   {
     eyebrow: "Fashion · New Autumn Arrivals",
     title: "Dress with intention.",
     subtitle:
-      "Timeless apparel in premium fabrics — tailored coats, knitwear, and everyday essentials. Enjoy 25% off your first order with code STYLE25.",
-    cta: { label: "Explore Collection", href: "/categories/apparel" },
+      "Timeless apparel in premium fabrics — tailored coats and everyday essentials. 25% off with code STYLE25.",
+    cta: { label: "Buy Now", href: "/categories/apparel" },
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8" + HERO_IMG,
   },
   {
     eyebrow: "Furniture · Clearance Event",
     title: "Furniture built to last.",
     subtitle:
-      "Solid-wood dining tables, ergonomic chairs, and statement pieces at their lowest prices of the season. Save up to 50% while stocks last.",
-    cta: { label: "View Deals", href: "/categories/home-living" },
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc" + HERO_IMG,
-  },
-  {
-    eyebrow: "Home & Living · Cozy Season",
-    title: "A calmer home starts here.",
-    subtitle:
-      "Considered objects in natural materials — throws, ceramics, and warm lighting to bring ease to your space. Buy 2, get 1 free on home décor.",
-    cta: { label: "Shop Now", href: "/categories/home-living" },
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace" + HERO_IMG,
+      "Solid-wood tables and statement chairs at their lowest prices of the season. Save up to 50%.",
+    cta: { label: "Buy Now", href: "/categories/home-living" },
+    image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c" + HERO_IMG,
   },
   {
     eyebrow: "Beauty · Glow Edit",
     title: "Skincare that works.",
     subtitle:
-      "Clean, effective serums, creams, and treatments loved by thousands. Get a free travel-size gift on all beauty orders over $50.",
-    cta: { label: "Explore Collection", href: "/categories/beauty" },
+      "Clean, effective serums and treatments loved by thousands. Free travel-size gift on orders over $50.",
+    cta: { label: "Buy Now", href: "/categories/beauty" },
     image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348" + HERO_IMG,
   },
   {
     eyebrow: "Accessories · Finishing Touches",
     title: "Details make the look.",
     subtitle:
-      "Leather bags, watches, and everyday carry crafted to last a lifetime. Save 30% on selected accessories this week only.",
-    cta: { label: "View Deals", href: "/categories/accessories" },
+      "Leather bags and watches crafted to last a lifetime. Save 30% on selected accessories this week.",
+    cta: { label: "Buy Now", href: "/categories/accessories" },
     image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3" + HERO_IMG,
   },
 ];
