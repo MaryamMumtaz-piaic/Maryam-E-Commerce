@@ -1,6 +1,8 @@
-import { getCategories, getFeaturedProducts } from "@/lib/data";
+import { getCategories, getFeaturedProducts, getTopProducts, getTopSellingProducts } from "@/lib/data";
 import { HeroCarousel, type HeroSlide } from "@/components/home/HeroCarousel";
 import { CategorySlider } from "@/components/home/CategorySlider";
+import { TopProducts } from "@/components/home/TopProducts";
+import { TopSellingGallery } from "@/components/home/TopSellingGallery";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
@@ -57,13 +59,16 @@ const SLIDES: HeroSlide[] = [
 
 
 export default async function HomePage() {
-  const [categories, featured] = await Promise.all([
+  const [categories, featured, topProducts, topSelling] = await Promise.all([
     getCategories(),
     getFeaturedProducts(8),
+    getTopProducts(8),
+    getTopSellingProducts(8),
   ]);
 
   return (
     <>
+      {/* 1. Hero Section */}
       <HeroCarousel slides={SLIDES} />
 
       {/* Mobile search (desktop has it in navbar) */}
@@ -71,9 +76,7 @@ export default async function HomePage() {
         <SearchBar />
       </Section>
 
-
-
-      {/* Categories */}
+      {/* 2. Categories */}
       <section className="w-full py-12 overflow-hidden">
         {/* Premium section header */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
@@ -99,7 +102,10 @@ export default async function HomePage() {
         <CategorySlider categories={categories} />
       </section>
 
-      {/* Featured products */}
+      {/* 3. Top Products — new section */}
+      <TopProducts products={topProducts} />
+
+      {/* 4. Featured products — moved below Top Products */}
       <Section className="py-10">
         <SectionHeading
           eyebrow="Editor's picks"
@@ -114,7 +120,10 @@ export default async function HomePage() {
         <ProductGrid products={featured} />
       </Section>
 
-      {/* Editorial CTA */}
+      {/* 5. Top Selling Products Gallery — new section */}
+      <TopSellingGallery products={topSelling} />
+
+      {/* 6. Our Story (Editorial CTA) */}
       <Section className="py-10">
         <div className="relative overflow-hidden rounded-[var(--radius-card)] bg-ink px-8 py-16 text-center sm:px-16">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-gold)]">

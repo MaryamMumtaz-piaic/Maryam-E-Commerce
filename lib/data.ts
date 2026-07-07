@@ -62,6 +62,34 @@ export async function getFeaturedProducts(limit = 8): Promise<ProductView[]> {
   return products.map(mapProduct);
 }
 
+export async function getTopProducts(limit = 8): Promise<ProductView[]> {
+  if (!isDbConfigured) {
+    return [...mockProducts]
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, limit);
+  }
+  const products = await prisma.product.findMany({
+    include: { category: true },
+    take: limit,
+    orderBy: { rating: "desc" },
+  });
+  return products.map(mapProduct);
+}
+
+export async function getTopSellingProducts(limit = 8): Promise<ProductView[]> {
+  if (!isDbConfigured) {
+    return [...mockProducts]
+      .sort((a, b) => b.numReviews - a.numReviews)
+      .slice(0, limit);
+  }
+  const products = await prisma.product.findMany({
+    include: { category: true },
+    take: limit,
+    orderBy: { numReviews: "desc" },
+  });
+  return products.map(mapProduct);
+}
+
 export async function getProducts(opts: {
   category?: string;
   search?: string;
