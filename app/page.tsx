@@ -5,7 +5,7 @@ import { ProductGrid } from "@/components/product/ProductGrid";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { SearchBar } from "@/components/layout/SearchBar";
-import { ArrowRight, ShieldIcon, TruckIcon, SparkleIcon } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
 
 // Fixed hero image standard: every slide delivered at identical 16:9 dimensions,
 // auto-cropped to the most relevant region so any source image fits without distortion.
@@ -54,11 +54,7 @@ const SLIDES: HeroSlide[] = [
   },
 ];
 
-const PERKS = [
-  { icon: TruckIcon, title: "Free shipping", text: "On all orders over $75, worldwide." },
-  { icon: ShieldIcon, title: "Secure checkout", text: "Encrypted payments via Stripe." },
-  { icon: SparkleIcon, title: "Crafted quality", text: "Premium materials, made to last." },
-];
+
 
 export default async function HomePage() {
   const [categories, featured] = await Promise.all([
@@ -75,25 +71,7 @@ export default async function HomePage() {
         <SearchBar />
       </Section>
 
-      {/* Perks strip */}
-      <Section className="py-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {PERKS.map((p) => (
-            <div
-              key={p.title}
-              className="flex items-center gap-4 rounded-[var(--radius-card)] border border-line bg-surface-alt px-5 py-5"
-            >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[var(--color-gold-soft)] text-[var(--color-gold-dark)]">
-                <p.icon className="h-5.5 w-5.5" />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-ink">{p.title}</p>
-                <p className="text-sm text-ink-soft">{p.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+
 
       {/* Categories */}
       <Section className="py-10">

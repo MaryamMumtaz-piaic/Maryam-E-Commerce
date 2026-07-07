@@ -57,27 +57,74 @@ body {
   animation: fade-in 0.6s ease forwards;
 }
 
+/* ── Hero entrance animations (UI/UX Pro Max §7: spring-physics, stagger) ── */
 @keyframes hero-text-in {
-  from { opacity: 0; transform: translateX(-32px); }
-  to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes hero-image-in {
-  from { opacity: 0; transform: translateX(40px) scale(1.02); }
-  to { opacity: 1; transform: translateX(0) scale(1); }
+  from { opacity: 0; transform: scale(1.04); filter: blur(6px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0); }
 }
 .hero-text {
-  animation: hero-text-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* Spring: overshoot curve — UI/UX Pro Max spring-physics */
+  animation: hero-text-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .hero-text > * {
   opacity: 0;
-  animation: hero-text-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+  animation: hero-text-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.hero-text > *:nth-child(1) { animation-delay: 0.05s; }
-.hero-text > *:nth-child(2) { animation-delay: 0.15s; }
-.hero-text > *:nth-child(3) { animation-delay: 0.25s; }
-.hero-text > *:nth-child(4) { animation-delay: 0.35s; }
+/* Stagger 30–50ms per child — UI/UX Pro Max stagger-sequence */
+.hero-text > *:nth-child(1) { animation-delay: 0.06s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.14s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.22s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.30s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.38s; }
 .hero-image {
-  animation: hero-image-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity, filter;
+  animation: hero-image-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Hero image card hover system ──────────────────────── */
+.hero-image-card {
+  /* GPU-layer promote for smooth hover transitions */
+  will-change: transform;
+}
+
+/* ── Hero CTA buttons — premium micro-interactions ─────── */
+/* Primary (gold fill) */
+.hero-cta-primary {
+  will-change: transform, box-shadow;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms ease,
+              background-color 180ms ease;
+}
+.hero-cta-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px -4px rgba(200, 162, 75, 0.42), 0 4px 8px -2px rgba(200, 162, 75, 0.22);
+}
+.hero-cta-primary:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 4px 12px -2px rgba(200, 162, 75, 0.25);
+  transition-duration: 80ms;
+}
+
+/* Secondary (outline) */
+.hero-cta-secondary {
+  will-change: transform, border-color, background-color;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 180ms ease,
+              background-color 180ms ease;
+}
+.hero-cta-secondary:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(10, 10, 10, 0.3);
+  background-color: var(--color-surface-alt);
+}
+.hero-cta-secondary:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 80ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -86,6 +133,52 @@ body {
   .hero-image {
     opacity: 1;
     animation: none;
+  }
+}
+
+/* Promotional floating notifications */
+@keyframes promo-in {
+  from { opacity: 0; transform: translate3d(40px, 0, 0) scale(0.96); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes promo-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  to { opacity: 0; transform: translate3d(40px, 0, 0) scale(0.96); }
+}
+.promo-in {
+  animation: promo-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+.promo-out {
+  animation: promo-out 0.35s cubic-bezier(0.4, 0, 1, 1) both;
+  will-change: transform, opacity;
+}
+@keyframes promo-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+.promo-progress {
+  transform-origin: left;
+  animation: promo-progress linear forwards;
+  will-change: transform;
+}
+
+/* ── Promo card visual shell ─────────────────────────────── */
+.promo-card {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-in,
+  .promo-out,
+  .promo-progress,
+  .hero-cta-primary,
+  .hero-cta-secondary,
+  .hero-image-card {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
