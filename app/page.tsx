@@ -1,6 +1,6 @@
 import { getCategories, getFeaturedProducts } from "@/lib/data";
 import { HeroCarousel, type HeroSlide } from "@/components/home/HeroCarousel";
-import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { CategorySlider } from "@/components/home/CategorySlider";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
@@ -74,19 +74,30 @@ export default async function HomePage() {
 
 
       {/* Categories */}
-      <Section className="py-10">
-        <SectionHeading
-          eyebrow="Browse"
-          title="Shop by category"
-          description="Explore our collections, each curated for quality and timeless appeal."
-          action={
-            <ButtonLink href="/products" variant="outline" size="sm">
+      <section className="w-full py-12 overflow-hidden">
+        {/* Premium section header */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--color-gold)]">
+                Shop by Category
+              </p>
+              <h2 className="font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                Discover Our Collections
+              </h2>
+              <div className="mt-3 h-px w-12 bg-gradient-to-r from-[var(--color-gold)] to-transparent" />
+              <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-ink-soft">
+                Explore premium products across carefully curated categories designed for every lifestyle.
+              </p>
+            </div>
+            <ButtonLink href="/products" variant="outline" size="sm" className="self-start sm:self-auto flex-shrink-0">
               View all <ArrowRight className="h-4 w-4" />
             </ButtonLink>
-          }
-        />
-        <CategoryGrid categories={categories} />
-      </Section>
+          </div>
+        </div>
+        {/* Infinite auto-scrolling slider */}
+        <CategorySlider categories={categories} />
+      </section>
 
       {/* Featured products */}
       <Section className="py-10">

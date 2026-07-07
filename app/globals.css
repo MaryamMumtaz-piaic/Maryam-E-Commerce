@@ -197,3 +197,30 @@ body {
 .animate-marquee-ltr {
   animation: marquee-ltr 30s linear infinite;
 }
+
+/* ── Category slider marquee ─────────────────────────────────── */
+@keyframes category-scroll {
+  /* Scrolls one-third of the tripled list = one full set */
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+.category-marquee {
+  will-change: transform;
+  animation: category-scroll 32s linear infinite;
+}
+.category-marquee-paused {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar cross-browser */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Card hover underline transition class */
+.duration-400 { transition-duration: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .category-marquee {
+    animation: none !important;
+  }
+}

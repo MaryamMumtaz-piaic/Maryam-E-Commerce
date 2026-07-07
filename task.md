@@ -1,129 +1,150 @@
-Here is a professional English prompt you can give to an AI developer (Cursor, Claude, ChatGPT, Bolt, Lovable, etc.):
+Here is a professional English prompt for your developer or AI coding assistant:
 
 ---
 
-# Hero Section UI/UX Enhancement Prompt (E-commerce Website)
+# Category Section Redesign & UX Enhancement Prompt
 
-Redesign and enhance the Hero Section of my e-commerce website to create a modern, premium, and conversion-focused landing experience while keeping the existing branding intact.
+Redesign the **Category Section** that appears immediately below the Hero Section to make it more modern, compact, visually appealing, and suitable for a premium e-commerce website.
 
-## 1. Improve Hero Content Alignment
+## 1. Reduce Category Card Size
 
-The current hero content (product title, description, and CTA buttons) is vertically centered, leaving too much empty space above and below, making the layout feel unbalanced.
+The current category cards are too large and occupy excessive vertical space.
 
 Please:
 
-* Position the content naturally within the hero section.
-* Reduce unnecessary top and bottom whitespace.
-* Improve vertical spacing between:
+* Reduce the height and width of each category card.
+* Make the cards compact and elegant.
+* Display **5 category cards in a single row** on desktop screens.
+* Maintain consistent spacing between all cards.
+* Ensure the layout remains fully responsive across tablets and mobile devices.
 
-  * Category label
-  * Product title
-  * Product description
-  * CTA buttons
-* Make the content feel visually balanced and professionally aligned.
+The section should feel clean, premium, and space-efficient.
 
 ---
 
-## 2. Improve Product Image Card
+## 2. Auto-Scrolling Infinite Category Slider
 
-The product image on the right side feels too sharp and plain.
-
-Please:
-
-* Use softer border radius (20–28px).
-* Add a subtle premium border.
-* Add a light shadow for depth.
-* Add a smooth hover animation.
-* Ensure the image fills the container perfectly without distortion.
-* Keep the overall design elegant and minimal.
-
----
-
-## 3. Enhance CTA Buttons
-
-The "Buy Now" and "Explore" buttons should feel more interactive.
-
-Please add:
-
-* Smooth hover animation
-* Click (press) effect
-* Soft scaling animation
-* Better shadow
-* Premium transition
-* Ripple or subtle glow effect (optional)
-* Improve spacing between the buttons
-
-The buttons should feel responsive and premium.
-
----
-
-## 4. Promotional Floating Notifications
-
-Create small promotional notification cards that appear one after another on the right side of the hero section.
+Instead of displaying static category cards, convert this section into an **infinite horizontal scrolling carousel**.
 
 Requirements:
 
-* Show one notification every **10 seconds**.
-* Display only one notification at a time.
-* Each notification should be dismissible with a close (×) button.
-* Clicking the notification should navigate directly to the related product page.
-* Notifications should auto-dismiss after a few seconds if the user doesn't interact.
+* Display **5 categories at a time**.
+* Automatically scroll from **left to right** in a continuous loop.
+* The animation should be smooth and seamless.
+* No visible jump when the slider restarts.
+* Pause auto-scroll when the user hovers over the section.
+* Resume scrolling when the cursor leaves.
+* Users should also be able to drag or swipe the carousel manually.
 
-Example notifications:
-
-* 🎉 Flat 10% OFF on Leather Bags
-* 🔥 50% OFF Summer Collection
-* 🚚 Free Shipping on Orders Above $100
-* ⭐ Limited Time Exclusive Deal
-
-Animations:
-
-* Slide in from the right
-* Fade in smoothly
-* Fade out on close
-* Auto-hide animation
-
-The notifications should never block the main content.
+The scrolling animation should be slow, elegant, and distraction-free.
 
 ---
 
-## 5. Improve Hero Layout
+## 3. Replace Background Images
 
-Refine the entire hero section by:
+The current background images do not represent the category names and feel unrelated.
 
-* Improving spacing
-* Better typography hierarchy
-* Cleaner composition
-* Consistent alignment
-* Better balance between left and right sections
-* Responsive behavior for Tablet and Mobile
+Replace them with meaningful, high-quality images that accurately reflect each category.
 
-The section should feel similar to a premium fashion or luxury e-commerce website.
+Examples:
+
+* Jewelry → Luxury jewelry, rings, necklaces
+* Bags → Premium handbags and backpacks
+* Shoes → Sneakers, heels, boots
+* Electronics → Smartphones, laptops, headphones
+* Watches → Luxury and smart watches
+* Beauty → Makeup and skincare products
+* Fashion → Clothing and accessories
+* Home Decor → Furniture and decorative items
+* Perfume → Premium fragrance bottles
+* Sunglasses → Stylish eyewear
+
+Use visually consistent, premium-quality images throughout the section.
 
 ---
 
-## 6. Performance
+## 4. Update Category Names
 
-* Use lightweight animations.
-* Ensure smooth 60 FPS transitions.
-* Do not negatively impact page load speed.
-* Keep all animations GPU-accelerated.
+Replace the existing category names with meaningful e-commerce categories.
+
+Suggested categories:
+
+* Jewelry
+* Bags
+* Shoes
+* Electronics
+* Watches
+* Beauty
+* Fashion
+* Home Decor
+* Perfumes
+* Sunglasses
+
+Each card should display:
+
+* Category image
+* Category name
+* Product count (dynamic if available)
+* Arrow icon or "Shop Now" CTA
 
 ---
 
-## 7. Responsive Design
+## 5. Improve Card Design
 
-The redesigned hero section must be fully responsive across:
+Redesign each category card with a premium look.
 
-* Desktop
-* Laptop
-* Tablet
-* Mobile
+Include:
 
-Maintain proper spacing, alignment, and image scaling on every screen size.
+* Rounded corners (18–24px)
+* Soft shadow
+* Smooth hover animation
+* Slight zoom effect on hover
+* Dark gradient overlay for better text readability
+* Crisp typography
+* Elegant spacing
+* Animated arrow icon that subtly moves on hover
+
+The design should feel modern, luxurious, and interactive.
+
+---
+
+## 6. Section Header Improvement
+
+Improve the section header by making it more visually engaging.
+
+Example:
+
+**SHOP BY CATEGORY**
+
+**Discover Our Collections**
+
+Explore premium products across carefully curated categories designed for every lifestyle.
+
+Keep the typography elegant with better spacing and alignment.
+
+---
+
+## 7. Performance
+
+* Use optimized images.
+* Lazy-load category images.
+* Ensure smooth 60 FPS animations.
+* Use GPU-accelerated CSS transforms.
+* Avoid layout shifts during scrolling.
+
+---
+
+## 8. Responsive Design
+
+The category section must be fully responsive:
+
+* Desktop: 5 cards per row with auto-scroll.
+* Tablet: 3–4 cards visible.
+* Mobile: 2 cards visible with swipe support.
+* Maintain consistent spacing and smooth scrolling on all devices.
 
 ---
 
 ## Goal
 
-The final Hero Section should look modern, premium, elegant, and conversion-focused, similar to high-end e-commerce brands like Zara, Apple, or Dior, while preserving the existing visual identity of the website.
+Create a modern, premium, and engaging category section that feels similar to leading e-commerce platforms, featuring compact category cards, meaningful category images, elegant animations, and a seamless infinite scrolling experience that enhances user engagement and encourages product discovery.
