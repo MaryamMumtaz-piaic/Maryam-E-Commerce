@@ -4,6 +4,25 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useToast } from "./toast";
 
+// Per-product sliding-window rate limiter for success toasts only (never gates
+// the cart mutation). Keeps at most MAX_TOASTS notifications per product within
+// any WINDOW_MS span, so rapid repeated clicks don't flood the screen.
+const WINDOW_MS = 6000;
+const MAX_TOASTS = 5;
+const toastTimestamps = new Map<string, number[]>();
+
+function shouldShowToast(productId: string): boolean {
+  const now = Date.now();
+  const recent = (toastTimestamps.get(productId) ?? []).filter((t) => now - t < WINDOW_MS);
+  if (recent.length >= MAX_TOASTS) {
+    toastTimestamps.set(productId, recent);
+    return false;
+  }
+  recent.push(now);
+  toastTimestamps.set(productId, recent);
+  return true;
+}
+
 export type CartItem = {
   id: string;
   slug: string;
@@ -44,10 +63,13 @@ export const useCart = create<CartState>()(
         });
         // Fire a success toast from the single choke point every "Add to Cart"
         // button already calls — so feedback is consistent across all pages.
-        useToast.getState().show({
-          message: `${item.name} added to cart`,
-          image: item.image,
-        });
+        // Rate-limited per product so rapid repeated clicks don't flood the UI.
+        if (shouldShowToast(item.id)) {
+          useToast.getState().show({
+            message: `${item.name} added to cart`,
+            image: item.image,
+          });
+        }
       },
       remove: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
       setQty: (id, qty) =>
