@@ -234,6 +234,20 @@ body {
   animation-play-state: paused;
 }
 
+/* ── Testimonials marquee (scrolls left → right) ─────────────── */
+@keyframes testimonial-scroll {
+  /* Starts shifted one set to the left, moves back to 0 = rightward motion */
+  from { transform: translateX(-33.333%); }
+  to   { transform: translateX(0); }
+}
+.testimonial-marquee {
+  will-change: transform;
+  animation: testimonial-scroll 40s linear infinite;
+}
+.testimonial-marquee-paused {
+  animation-play-state: paused;
+}
+
 /* Hide scrollbar cross-browser */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

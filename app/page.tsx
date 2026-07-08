@@ -3,6 +3,7 @@ import { HeroCarousel, type HeroSlide } from "@/components/home/HeroCarousel";
 import { CategorySlider } from "@/components/home/CategorySlider";
 import { TopProducts } from "@/components/home/TopProducts";
 import { TopSellingGallery } from "@/components/home/TopSellingGallery";
+import { Testimonials } from "@/components/home/Testimonials";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
@@ -123,26 +124,8 @@ export default async function HomePage() {
       {/* 5. Top Selling Products Gallery — new section */}
       <TopSellingGallery products={topSelling} />
 
-      {/* 6. Our Story (Editorial CTA) */}
-      <Section className="py-10">
-        <div className="relative overflow-hidden rounded-[var(--radius-card)] bg-ink px-8 py-16 text-center sm:px-16">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-gold)]">
-            Our story
-          </p>
-          <h2 className="mx-auto max-w-2xl font-serif text-3xl text-white sm:text-4xl">
-            Design with intention. Quality without compromise.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/75">
-            Maryam began with a simple idea — fewer, better things. Learn the story
-            behind the studio and the values that shape every piece.
-          </p>
-          <div className="mt-8">
-            <ButtonLink href="/about" variant="gold" size="lg">
-              Read our story <ArrowRight className="h-4.5 w-4.5" />
-            </ButtonLink>
-          </div>
-        </div>
-      </Section>
+      {/* 6. Customer Testimonials */}
+      <Testimonials />
     </>
   );
 }
