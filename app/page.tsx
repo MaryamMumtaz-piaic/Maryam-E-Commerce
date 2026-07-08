@@ -63,7 +63,7 @@ export default async function HomePage() {
     getCategories(),
     getFeaturedProducts(8),
     getTopProducts(8),
-    getTopSellingProducts(8),
+    getTopSellingProducts(16),
   ]);
 
   return (
