@@ -57,6 +57,37 @@ body {
   animation: fade-in 0.6s ease forwards;
 }
 
+/* ── Auth pages: floating product cards + soft gradient drift ── */
+@keyframes auth-float {
+  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0)); }
+  50%      { transform: translateY(-16px) rotate(var(--tw-rotate, 0)); }
+}
+.animate-auth-float {
+  animation: auth-float 6s ease-in-out infinite;
+}
+@keyframes auth-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-auth-gradient {
+  background-size: 200% 200%;
+  animation: auth-gradient 14s ease infinite;
+}
+@keyframes auth-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-auth-in {
+  animation: auth-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-auth-float,
+  .animate-auth-gradient,
+  .animate-auth-in {
+    animation: none;
+  }
+}
+
 /* ── Toast notifications: slide in from the right, fade + slide out ── */
 @keyframes toast-in {
   from { opacity: 0; transform: translateX(120%); }
