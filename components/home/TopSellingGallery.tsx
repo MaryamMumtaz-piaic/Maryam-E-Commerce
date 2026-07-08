@@ -192,7 +192,7 @@ export function TopSellingGallery({ products }: { products: ProductView[] }) {
   const columns = distributeIntoColumns(items, columnCount);
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <section id="top-selling" className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 scroll-mt-24">
       {/* Section Header — unchanged */}
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>

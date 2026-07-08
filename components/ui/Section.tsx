@@ -3,12 +3,17 @@ import { cn } from "@/lib/utils";
 export function Section({
   className,
   children,
+  id,
 }: {
   className?: string;
   children: React.ReactNode;
+  id?: string;
 }) {
   return (
-    <section className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)}>
+    <section
+      id={id}
+      className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 scroll-mt-24", className)}
+    >
       {children}
     </section>
   );

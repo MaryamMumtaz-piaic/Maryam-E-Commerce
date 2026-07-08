@@ -107,7 +107,7 @@ export default async function HomePage() {
       <TopProducts products={topProducts} />
 
       {/* 4. Featured products — moved below Top Products */}
-      <Section className="py-10">
+      <Section id="featured" className="py-10">
         <SectionHeading
           eyebrow="Editor's picks"
           title="Featured products"
