@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useToast } from "./toast";
 
 export type CartItem = {
   id: string;
@@ -27,7 +28,7 @@ export const useCart = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
-      add: (item, qty = 1) =>
+      add: (item, qty = 1) => {
         set((state) => {
           const existing = state.items.find((i) => i.id === item.id);
           if (existing) {
@@ -40,7 +41,14 @@ export const useCart = create<CartState>()(
             };
           }
           return { items: [...state.items, { ...item, quantity: Math.min(item.stock, qty) }] };
-        }),
+        });
+        // Fire a success toast from the single choke point every "Add to Cart"
+        // button already calls — so feedback is consistent across all pages.
+        useToast.getState().show({
+          message: `${item.name} added to cart`,
+          image: item.image,
+        });
+      },
       remove: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
       setQty: (id, qty) =>
         set((state) => ({
