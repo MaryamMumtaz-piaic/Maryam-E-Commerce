@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Footer } from "@/components/layout/Footer";
+import { ConditionalHeader } from "@/components/layout/ConditionalHeader";
+import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { Providers } from "@/components/providers/Providers";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { getCategories } from "@/lib/data";
@@ -32,10 +31,9 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-surface text-ink antialiased">
         <Providers>
-          <AnnouncementBar />
-          <Navbar categories={categories} session={session} />
+          <ConditionalHeader categories={categories} session={session} />
           <main>{children}</main>
-          <Footer categories={categories} />
+          <ConditionalFooter categories={categories} />
           <ChatWidget userName={session?.user?.name ?? null} />
         </Providers>
       </body>

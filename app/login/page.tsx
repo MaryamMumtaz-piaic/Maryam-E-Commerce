@@ -51,12 +51,12 @@ export default function LoginPage() {
       heading="Welcome Back!"
       description="Discover premium products, exclusive collections, and a seamless shopping experience. Sign in to continue your journey with Maryam Shop."
     >
-      <div className="mb-6 text-center">
-        <h1 className="font-serif text-3xl tracking-tight text-ink">Sign in</h1>
-        <p className="mt-1.5 text-sm text-ink-soft">Welcome back — let&apos;s pick up where you left off.</p>
+      <div className="mb-5 text-center">
+        <h1 className="font-serif text-2xl tracking-tight text-ink sm:text-3xl">Sign in</h1>
+        <p className="mt-1 text-sm text-ink-soft">Welcome back — let&apos;s pick up where you left off.</p>
       </div>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form onSubmit={onSubmit} className="flex flex-col gap-3.5">
         {error && (
           <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
         )}
@@ -97,13 +97,13 @@ export default function LoginPage() {
         <GoogleButton onClick={onGoogle} />
       </form>
 
-      <div className="mt-5 rounded-xl border border-line bg-surface-alt px-4 py-3 text-xs text-ink-soft">
+      <div className="mt-4 rounded-xl border border-line bg-surface-alt px-4 py-2.5 text-xs text-ink-soft">
         <p className="font-medium text-ink">Demo accounts</p>
         <p className="mt-1">Admin: m.samiwaseem1234@gmail.com / admin1234</p>
         <p>Customer: customer@maryam.shop / demo1234</p>
       </div>
 
-      <p className="mt-6 text-center text-sm text-ink-soft">
+      <p className="mt-4 text-center text-sm text-ink-soft">
         Don&apos;t have an account?{" "}
         <Link href="/signup" className="font-semibold text-[var(--color-gold-dark)] hover:underline">
           Sign Up

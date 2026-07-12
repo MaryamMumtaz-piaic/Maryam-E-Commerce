@@ -59,11 +59,28 @@ body {
 
 /* ── Auth pages: floating product cards + soft gradient drift ── */
 @keyframes auth-float {
-  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0)); }
-  50%      { transform: translateY(-16px) rotate(var(--tw-rotate, 0)); }
+  0%, 100% { transform: translateY(0) rotate(var(--tw-rotate, 0deg)); }
+  50%      { transform: translateY(-18px) rotate(var(--tw-rotate, 0deg)); }
 }
 .animate-auth-float {
-  animation: auth-float 6s ease-in-out infinite;
+  animation: auth-float 7s ease-in-out infinite;
+}
+/* Gentle orbital drift for decorative blobs */
+@keyframes auth-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(24px, -18px) scale(1.06); }
+  66%      { transform: translate(-18px, 14px) scale(0.96); }
+}
+.animate-auth-drift {
+  animation: auth-drift 18s ease-in-out infinite;
+}
+/* Slow rotation for the abstract ring */
+@keyframes auth-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-auth-spin {
+  animation: auth-spin 40s linear infinite;
 }
 @keyframes auth-gradient {
   0%, 100% { background-position: 0% 50%; }
@@ -71,7 +88,7 @@ body {
 }
 .animate-auth-gradient {
   background-size: 200% 200%;
-  animation: auth-gradient 14s ease infinite;
+  animation: auth-gradient 18s ease infinite;
 }
 @keyframes auth-in {
   from { opacity: 0; transform: translateY(16px); }
@@ -80,11 +97,24 @@ body {
 .animate-auth-in {
   animation: auth-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+/* Staggered rise for the left-panel copy */
+@keyframes auth-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-auth-rise {
+  opacity: 0;
+  animation: auth-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 @media (prefers-reduced-motion: reduce) {
   .animate-auth-float,
+  .animate-auth-drift,
+  .animate-auth-spin,
   .animate-auth-gradient,
-  .animate-auth-in {
+  .animate-auth-in,
+  .animate-auth-rise {
     animation: none;
+    opacity: 1;
   }
 }
 

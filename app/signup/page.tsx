@@ -70,12 +70,12 @@ export default function SignupPage() {
       heading="Welcome to Maryam Shop"
       description="Join a community of thoughtful shoppers. Create an account for a faster checkout, a personal wishlist, and access to exclusive collections."
     >
-      <div className="mb-6 text-center">
-        <h1 className="font-serif text-3xl tracking-tight text-ink">Create account</h1>
-        <p className="mt-1.5 text-sm text-ink-soft">It only takes a moment to get started.</p>
+      <div className="mb-5 text-center">
+        <h1 className="font-serif text-2xl tracking-tight text-ink sm:text-3xl">Create account</h1>
+        <p className="mt-1 text-sm text-ink-soft">It only takes a moment to get started.</p>
       </div>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form onSubmit={onSubmit} className="flex flex-col gap-3.5">
         {error && (
           <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
         )}
@@ -103,7 +103,7 @@ export default function SignupPage() {
         <GoogleButton onClick={onGoogle} />
       </form>
 
-      <p className="mt-6 text-center text-sm text-ink-soft">
+      <p className="mt-4 text-center text-sm text-ink-soft">
         Already have an account?{" "}
         <Link href="/login" className="font-semibold text-[var(--color-gold-dark)] hover:underline">
           Sign In
