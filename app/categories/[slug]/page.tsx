@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getCategories, getProducts } from "@/lib/data";
-import { ProductGrid } from "@/components/product/ProductGrid";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { ShopView } from "@/components/product/ShopView";
+import { Section } from "@/components/ui/Section";
+import { ShopHero, ShopSkeleton } from "@/components/product/ShopChrome";
 
 export async function generateMetadata({
   params,
@@ -20,20 +22,30 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const categories = await getCategories();
+  const [categories, { products, total }] = await Promise.all([
+    getCategories(),
+    getProducts({ category: slug, pageSize: 1000 }),
+  ]);
   const category = categories.find((c) => c.slug === slug);
   if (!category) notFound();
 
-  const { products, total } = await getProducts({ category: slug, pageSize: 24 });
-
   return (
-    <Section className="py-12">
-      <SectionHeading
+    <Section className="py-8 sm:py-10">
+      <ShopHero
+        breadcrumb={[
+          { label: "Home", href: "/" },
+          { label: "Shop", href: "/products" },
+          { label: category.name },
+        ]}
         eyebrow="Category"
         title={category.name}
-        description={category.description ?? `${total} products available.`}
+        description={category.description ?? `Discover our ${category.name.toLowerCase()} selection.`}
+        count={total}
       />
-      <ProductGrid products={products} />
+
+      <Suspense fallback={<ShopSkeleton />}>
+        <ShopView products={products} categories={categories} lockedCategory={slug} />
+      </Suspense>
     </Section>
   );
 }

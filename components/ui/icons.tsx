@@ -168,6 +168,41 @@ export function GoogleIcon(p: IconProps) {
   );
 }
 
+export function MailIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3.5 7 8.5 6 8.5-6" />
+    </svg>
+  );
+}
+
+export function PhoneIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M4 5c0-1 .8-2 1.8-2h2.1c.5 0 .9.3 1 .8l.9 3.4c.1.4 0 .9-.4 1.2L7.9 10a13 13 0 0 0 6 6l1.6-1.6c.3-.3.8-.4 1.2-.3l3.4.9c.5.1.8.5.8 1v2.1c0 1-.9 1.9-2 1.8A16 16 0 0 1 4 5z" />
+    </svg>
+  );
+}
+
+export function MapPinIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </svg>
+  );
+}
+
+export function ClockIcon(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2" />
+    </svg>
+  );
+}
+
 // ── Social icons (filled brand glyphs; use currentColor) ──────────────────────
 const social = { viewBox: "0 0 24 24", fill: "currentColor" };
 

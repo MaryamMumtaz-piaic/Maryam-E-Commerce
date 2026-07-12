@@ -337,3 +337,73 @@ body {
   animation: section-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ── Shop: loading skeleton shimmer ── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background-color: var(--color-surface-alt);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-surface-alt) 0%,
+    #f0f0f0 50%,
+    var(--color-surface-alt) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+/* ── Shop: mobile filter drawer slide-in ── */
+@keyframes drawer-in {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+.animate-drawer-in {
+  animation: drawer-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Shop: dual price-range slider ── */
+/* Both range inputs stack; only their thumbs receive pointer events so each
+   handle stays draggable while the shared track shows through underneath. */
+.range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+.range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.range-thumb::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.range-thumb::-moz-range-thumb {
+  pointer-events: auto;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+.range-thumb::-moz-range-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  .animate-drawer-in { animation: none; }
+}
+

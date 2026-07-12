@@ -1,108 +1,184 @@
-Here is a professional English prompt:
+मैं आपकी बात समझ गया। समस्या UI की नहीं, **UX की भी है।**
+
+पहली इमेज वाला लेआउट एक सामान्य e-commerce listing जैसा लग रहा था। दूसरी इमेज में redesign करने की कोशिश की गई, लेकिन उसमें **luxury feeling खत्म हो गई**। Hero section बहुत बड़ा है, खाली space ज्यादा है, filter panel भारी लग रहा है, और black icons/buttons पूरे design से match नहीं कर रहे। Overall page **Amazon/Daraz जैसी usability भी नहीं दे रहा और premium brand feel भी नहीं दे रहा।**
+
+अगर आप Cursor/Claude Code को दोबारा prompt देना चाहते हैं, तो यह prompt ज्यादा clear रहेगा:
 
 ---
 
-# Homepage Product Sections Redesign Prompt
+## Category Page Redesign (Premium E-commerce)
 
-The **Category Section** has now been completed and looks excellent. The layout, scrolling behavior, and overall UI are exactly as expected.
+The current Category/Shop page redesign is **not meeting the expected quality**. Although the layout was changed, it no longer feels like a professional e-commerce website. Please redesign the page again from scratch.
 
-Now I want to redesign the sections that appear below the Category section.
+### Design Goal
 
-## 1. Add a New "Top Products" Section
+Create a **modern, premium, conversion-focused category page** inspired by leading e-commerce platforms such as **Amazon, Zara, H&M, Nike, Apple Store, and Daraz**, while keeping the Maryam Shop identity unique.
 
-Immediately below the Category section, create a new section called **Top Products**.
-
-Requirements:
-
-* Display **4 products per row** on desktop.
-* Show only the best and most popular products.
-* Use a clean product card design similar to premium e-commerce websites.
-* Include:
-
-  * Product image
-  * Product name
-  * Category
-  * Price
-  * Rating
-  * Wishlist icon
-  * Quick Add to Cart button (optional)
-* Keep spacing consistent with the rest of the homepage.
-* Add smooth hover animations and subtle card elevation.
+Do **not** copy any website directly. Instead, adopt their UX principles and create a cleaner, more premium experience.
 
 ---
 
-## 2. Move the Existing "Featured Products" Section
+### 1. Reduce the Hero Section
 
-The current **Featured Products** section already looks very good.
+The current hero/banner is too large and wastes valuable screen space.
 
-Please:
+Instead:
 
-* Keep its existing design.
-* Move it **below the new Top Products section**.
-* Do not change its UI or styling unless necessary for consistency.
+* Make the hero much shorter (180–220px height).
+* Show:
 
-The new homepage order should be:
+  * Breadcrumb
+  * Category title
+  * Small description
+  * Product count
+* Remove unnecessary empty space.
+* Add only a subtle light gradient or abstract background.
+* Keep it elegant and minimal.
+
+Users should reach the products quickly without excessive scrolling.
+
+---
+
+### 2. Professional Filter Sidebar
+
+The filter panel should feel similar to premium shopping websites.
+
+Include:
 
 * Categories
-* Top Products
-* Featured Products
+* Price Range
+* Brand
+* Rating
+* Color
+* Size
+* Discount
+* Availability
+
+The sidebar should:
+
+* Stay sticky while scrolling.
+* Use collapsible sections.
+* Have cleaner spacing.
+* Feel lightweight instead of heavy.
 
 ---
 
-## 3. Add a New "Top Selling Products" Gallery
+### 3. Toolbar Above Products
 
-Below the **Featured Products** section, create a completely new section called **Top Selling Products**.
+Create a clean toolbar containing:
 
-Instead of using a standard product grid, design it as a **modern product gallery**.
+* Product count
+* Sort dropdown
+* Search within results
+* Grid/List toggle
+* Active filters
+* Clear filters
 
-Requirements:
-
-* Display **8 products**.
-* Arrange them in an attractive gallery or masonry-style layout.
-* Use different card sizes to create a visually engaging composition.
-* Each product should include:
-
-  * High-quality image
-  * Product name
-  * Price
-  * Discount badge (if applicable)
-  * Wishlist icon
-* Add smooth hover animations such as:
-
-  * Image zoom
-  * Soft shadow
-  * Fade overlay
-  * "View Product" button on hover
-
-The section should feel premium and visually dynamic, encouraging users to explore products.
+Everything should be aligned in one clean row.
 
 ---
 
-## 4. Keep the "Our Story" Section
+### 4. Product Cards
 
-After the **Top Selling Products** gallery, keep the existing **Our Story** section exactly where it is.
+This is the most important section.
 
-The final homepage order should be:
+Cards should feel premium.
 
-1. Hero Section
-2. Categories
-3. Top Products
-4. Featured Products
-5. Top Selling Products
-6. Our Story
+Each card should contain:
+
+* Large product image
+* Hover image swap
+* Wishlist
+* Quick View
+* Add to Cart
+* Brand
+* Product title
+* Rating
+* Review count
+* Current price
+* Original price
+* Discount badge
+* Free shipping badge
+
+Hover should include:
+
+* Soft shadow
+* Slight image zoom
+* Smooth animation
+
+Cards should have equal height and consistent spacing.
 
 ---
 
-## 5. Design Guidelines
+### 5. Improve Visual Hierarchy
 
-* Maintain the same premium design language throughout the homepage.
-* Ensure consistent spacing, typography, colors, and card styling.
-* Use smooth animations without affecting performance.
-* Make all sections fully responsive across desktop, tablet, and mobile devices.
-* Keep scrolling smooth and visually balanced.
+The current design has too much empty space and lacks hierarchy.
+
+Improve:
+
+* Typography
+* Spacing
+* Margins
+* Alignment
+* Section separation
+
+Every element should have a clear visual purpose.
 
 ---
 
-## Goal
+### 6. Color Palette
 
-Create a homepage that feels like a premium, modern e-commerce platform. The product sections should be well-organized, visually appealing, and encourage users to browse more products while maintaining a clean and luxurious shopping experience.
+Avoid heavy black UI elements.
+
+Instead use:
+
+* White background
+* Light gray borders
+* Soft gold accent (#C9A227 or brand gold)
+* Black only for headings
+* Neutral grays for secondary text
+
+The page should feel bright, elegant, and premium.
+
+---
+
+### 7. Better Shopping Experience
+
+Add:
+
+* Sticky filter sidebar
+* Sticky toolbar while scrolling
+* Skeleton loaders
+* Smooth hover animations
+* Empty state illustrations
+* Responsive layout
+* Mobile filter drawer
+
+---
+
+### 8. Inspiration
+
+The final page should feel like a combination of:
+
+* Amazon (usability)
+* Zara (clean layout)
+* Nike (premium cards)
+* Apple (spacing & typography)
+* Daraz (shopping flow)
+
+without copying any of them.
+
+---
+
+### Final Goal
+
+When a user opens the Category page, the first impression should immediately communicate:
+
+* Premium
+* Modern
+* Trustworthy
+* Easy to browse
+* Fast to shop
+* Luxury shopping experience
+
+The page should look like a professionally designed commercial e-commerce website rather than a basic product listing. Every section should be polished and optimized for both aesthetics and conversions.

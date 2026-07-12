@@ -6,6 +6,7 @@ import { AddToCart } from "@/components/product/AddToCart";
 import { ReviewList } from "@/components/product/ReviewList";
 import { ReviewForm } from "@/components/product/ReviewForm";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { RecordView } from "@/components/product/RecordView";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Rating } from "@/components/ui/Rating";
 import { formatPrice } from "@/lib/utils";
@@ -39,6 +40,17 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      <RecordView
+        item={{
+          id: product.id,
+          slug: product.slug,
+          name: product.name,
+          price: product.price,
+          compareAt: product.compareAt,
+          image: product.images[0],
+          categoryName: product.categoryName,
+        }}
+      />
       <Section className="py-8">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-xs text-ink-soft">
