@@ -29,8 +29,8 @@ export function Logo({ className }: { className?: string }) {
           />
         </svg>
       </span>
-      <span className="font-serif text-2xl leading-none tracking-tight text-ink">
-        Maryam
+      <span className="font-serif text-[15px] font-semibold uppercase tracking-[0.3em] text-ink transition-colors duration-200 group-hover:text-[var(--color-gold-dark)] pt-0.5">
+        MARYAM
       </span>
     </Link>
   );

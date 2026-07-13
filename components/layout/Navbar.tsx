@@ -9,7 +9,7 @@ import { Logo } from "@/components/ui/Logo";
 import { SearchBar } from "./SearchBar";
 import { NavActions } from "./NavActions";
 import { UserMenu } from "./UserMenu";
-import { MenuIcon, CloseIcon } from "@/components/ui/icons";
+import { MenuIcon, CloseIcon, LoginIcon, UserPlusIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 const STATIC_LINKS = [
@@ -121,18 +121,20 @@ export function Navbar({
               ))}
             </div>
             {!session?.user && (
-              <div className="mt-6 flex gap-3 border-t border-line pt-5 px-3">
+              <div className="mt-6 flex flex-col gap-2.5 border-t border-line pt-5 px-3">
                 <Link
                   href="/login"
-                  className="flex-1 rounded-full border border-line py-2.5 text-center text-sm font-medium text-ink transition-colors duration-200 hover:bg-surface-alt"
+                  className="flex h-11 items-center justify-center gap-2 rounded-full border border-line text-xs font-semibold uppercase tracking-widest text-ink transition-colors duration-200 hover:bg-surface-alt"
                 >
-                  Sign in
+                  <LoginIcon className="h-4.5 w-4.5 text-ink-soft" />
+                  <span>Sign In</span>
                 </Link>
                 <Link
                   href="/signup"
-                  className="flex-1 rounded-full bg-ink py-2.5 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-[var(--color-gold-dark)]"
+                  className="flex h-11 items-center justify-center gap-2 rounded-full bg-ink text-xs font-semibold uppercase tracking-widest text-white transition-colors duration-200 hover:bg-black"
                 >
-                  Sign up
+                  <span>Create Account</span>
+                  <UserPlusIcon className="h-4.5 w-4.5" />
                 </Link>
               </div>
             )}

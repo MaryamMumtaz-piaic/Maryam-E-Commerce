@@ -5,6 +5,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
+import { LoginIcon, UserPlusIcon } from "@/components/ui/icons";
+
 type SessionUser = { name?: string | null; email?: string | null; role?: string } | null;
 
 // Premium custom icons for menu items
@@ -101,18 +103,22 @@ export function UserMenu({ user }: { user: SessionUser }) {
 
   if (!user) {
     return (
-      <div className="hidden items-center gap-2 pl-1 sm:flex">
+      <div className="hidden items-center gap-1.5 pl-1 sm:flex">
+        {/* Refined ghost-style Sign In button */}
         <Link
           href="/login"
-          className="rounded-full px-4 py-2 text-sm font-medium text-ink transition-all duration-200 hover:text-[var(--color-gold-dark)] hover:bg-surface-alt active:scale-95"
+          className="group flex h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-widest text-ink transition-all duration-200 hover:bg-surface-alt hover:text-[var(--color-gold-dark)] active:scale-95"
         >
-          Sign in
+          <LoginIcon className="h-4.5 w-4.5 text-ink-soft transition-colors duration-200 group-hover:text-[var(--color-gold-dark)]" />
+          <span>Sign In</span>
         </Link>
+        {/* Luxury Primary Sign Up button */}
         <Link
           href="/signup"
-          className="rounded-full bg-ink px-5 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-[var(--color-gold-dark)] hover:shadow-[0_4px_12px_rgba(200,162,75,0.25)] active:scale-95"
+          className="group flex h-10 items-center gap-2 rounded-full bg-ink px-5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)] active:translate-y-0 active:scale-95"
         >
-          Sign up
+          <span>Create Account</span>
+          <UserPlusIcon className="h-4.5 w-4.5 transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>
     );
