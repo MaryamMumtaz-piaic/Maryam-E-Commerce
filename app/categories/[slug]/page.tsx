@@ -30,18 +30,8 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   return (
-    <Section className="py-8 sm:py-10">
-      <ShopHero
-        breadcrumb={[
-          { label: "Home", href: "/" },
-          { label: "Shop", href: "/products" },
-          { label: category.name },
-        ]}
-        eyebrow="Category"
-        title={category.name}
-        description={category.description ?? `Discover our ${category.name.toLowerCase()} selection.`}
-        count={total}
-      />
+    <Section className="py-4 sm:py-5">
+      <ShopHero eyebrow="Collection" title={category.name} />
 
       <Suspense fallback={<ShopSkeleton />}>
         <ShopView products={products} categories={categories} lockedCategory={slug} />

@@ -13,17 +13,8 @@ export default async function ProductsPage() {
   ]);
 
   return (
-    <Section className="py-8 sm:py-10">
-      <ShopHero
-        breadcrumb={[
-          { label: "Home", href: "/" },
-          { label: "Shop" },
-        ]}
-        eyebrow="The Collection"
-        title="All Products"
-        description="Considered pieces across apparel, footwear, home, beauty, and tech."
-        count={total}
-      />
+    <Section className="py-4 sm:py-5">
+      <ShopHero eyebrow="The Collection" title="All Products" />
 
       <Suspense fallback={<ShopSkeleton />}>
         <ShopView products={products} categories={categories} />

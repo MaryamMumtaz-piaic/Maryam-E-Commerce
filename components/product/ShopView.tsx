@@ -21,10 +21,10 @@ import { ProductCard } from "./ProductCard";
 import { ShopFilters } from "./ShopFilters";
 import { QuickViewModal } from "./QuickViewModal";
 import { RecentlyViewed } from "./RecentlyViewed";
+import { SortDropdown } from "./SortDropdown";
 import {
   SearchIcon,
   CloseIcon,
-  ChevronDown,
 } from "@/components/ui/icons";
 
 const BATCH = 12;
@@ -49,10 +49,17 @@ export function ShopView({
   const [sort, setSort] = useState<SortKey>(() => (params.get("sort") as SortKey) ?? "newest");
   const [searchInput, setSearchInput] = useState(() => params.get("search") ?? "");
   const [view, setView] = useState<"grid" | "list">("grid");
+  // Desktop sidebar: visible by default, can be collapsed
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // Mobile drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [visible, setVisible] = useState(BATCH);
   const [quickView, setQuickView] = useState<ProductView | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  // Expandable search bar state
+  const [searchExpanded, setSearchExpanded] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => setHydrated(true), []);
 
@@ -98,6 +105,25 @@ export function ShopView({
     return () => clearTimeout(t);
   }, [searchInput]);
 
+  // ── Collapse search on outside click ──
+  useEffect(() => {
+    if (!searchExpanded) return;
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchExpanded(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [searchExpanded]);
+
+  // Auto-focus the input when search expands
+  useEffect(() => {
+    if (searchExpanded && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchExpanded]);
+
   // ── Infinite scroll ──
   const sentinel = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -128,138 +154,204 @@ export function ShopView({
   const shown = filtered.slice(0, visible);
   const chips = buildChips(filters, bounds, categories, lockedCategory);
 
+  // Determine the grid column layout based on sidebar state
+  const gridCols = sidebarOpen
+    ? "lg:grid-cols-[260px_1fr]"
+    : "lg:grid-cols-[0px_1fr]";
+
   return (
     <>
-      <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-10">
-        {/* ── Sidebar (desktop, sticky) ── */}
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-line bg-white p-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-            <ShopFilters
-              categories={categories}
-              filters={filters}
-              facets={facets}
-              bounds={bounds}
-              activeCount={activeCount}
-              onChange={update}
-              onReset={reset}
-            />
-          </div>
-        </aside>
+      <div className={cn("grid gap-6 lg:gap-8", sidebarOpen ? "lg:grid-cols-[260px_1fr]" : "lg:grid-cols-1")}>
+        {/* ── Sidebar (desktop, sticky, collapsible) ── */}
+        {sidebarOpen && (
+          <aside className="hidden lg:block">
+            <div className="sticky top-20 max-h-[calc(100vh-5.5rem)] overflow-y-auto rounded-xl border border-line bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              {/* Sidebar header with collapse button */}
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">Filters</span>
+                <button
+                  type="button"
+                  onClick={() => setSidebarOpen(false)}
+                  aria-label="Collapse filters"
+                  className="grid h-7 w-7 place-items-center rounded-full text-ink-soft transition hover:bg-surface-alt hover:text-ink"
+                >
+                  {/* Left-pointing chevron to collapse */}
+                  <svg viewBox="0 0 16 16" className="h-4 w-4" fill="currentColor" aria-hidden>
+                    <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <ShopFilters
+                categories={categories}
+                filters={filters}
+                facets={facets}
+                bounds={bounds}
+                activeCount={activeCount}
+                onChange={update}
+                onReset={reset}
+              />
+            </div>
+          </aside>
+        )}
 
         {/* ── Main column ── */}
         <div className="min-w-0">
-          {/* Toolbar */}
-          <div className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] sm:p-4">
-            <div className="flex items-center gap-3">
-              {/* Search within results */}
-              <div className="relative flex-1">
-                <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft" />
-                <input
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Search within results…"
-                  className="h-10 w-full rounded-full border border-line bg-surface-alt pl-9 pr-9 text-sm text-ink placeholder:text-ink-soft focus:border-[var(--color-gold)] focus:bg-white focus:outline-none"
-                />
-                {searchInput && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchInput("")}
-                    aria-label="Clear search"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-soft hover:text-ink"
-                  >
-                    <CloseIcon className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
+          {/* ── Compact single-row toolbar ── */}
+          <div className="flex items-center gap-2 rounded-xl border border-line bg-white px-3 py-2 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
 
-              {/* Filter button (mobile/tablet) */}
-              <button
-                type="button"
-                onClick={() => setDrawerOpen(true)}
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 text-sm font-medium text-ink transition hover:bg-surface-alt lg:hidden"
-              >
-                Filters
-                {activeCount > 0 && (
-                  <span className="grid h-5 min-w-5 place-items-center rounded-full bg-[var(--color-gold)] px-1 text-[11px] font-semibold text-white">
-                    {activeCount}
-                  </span>
-                )}
-              </button>
-            </div>
+            {/* Filter toggle (desktop – expand sidebar) */}
+            <button
+              type="button"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label={sidebarOpen ? "Collapse filters" : "Expand filters"}
+              className={cn(
+                "hidden lg:inline-flex h-8 items-center gap-1.5 rounded-lg border px-3 text-xs font-medium transition",
+                sidebarOpen
+                  ? "border-[var(--color-gold)]/40 bg-[var(--color-gold-soft)] text-[var(--color-gold-dark)]"
+                  : "border-line text-ink-soft hover:border-[var(--color-gold)]/40 hover:bg-[var(--color-gold-soft)] hover:text-[var(--color-gold-dark)]"
+              )}
+            >
+              <FilterIcon />
+              {sidebarOpen ? "Hide" : "Filters"}
+              {activeCount > 0 && (
+                <span className="grid h-4 min-w-4 place-items-center rounded-full bg-[var(--color-gold)] px-1 text-[10px] font-semibold text-white">
+                  {activeCount}
+                </span>
+              )}
+            </button>
 
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-sm text-ink-soft">
-                <span className="font-semibold text-ink">{filtered.length}</span>{" "}
-                {filtered.length === 1 ? "product" : "products"}
-              </p>
+            {/* Filter button (mobile) */}
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Open filters"
+              className="inline-flex lg:hidden h-8 items-center gap-1.5 rounded-lg border border-line px-3 text-xs font-medium text-ink-soft transition hover:bg-surface-alt"
+            >
+              <FilterIcon />
+              Filters
+              {activeCount > 0 && (
+                <span className="grid h-4 min-w-4 place-items-center rounded-full bg-[var(--color-gold)] px-1 text-[10px] font-semibold text-white">
+                  {activeCount}
+                </span>
+              )}
+            </button>
 
-              <div className="flex items-center gap-2">
-                {/* Sort */}
-                <div className="relative">
-                  <select
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value as SortKey)}
-                    className="h-10 appearance-none rounded-full border border-line bg-white pl-4 pr-9 text-sm text-ink focus:border-[var(--color-gold)] focus:outline-none"
-                    aria-label="Sort products"
-                  >
-                    {SORTS.map((s) => (
-                      <option key={s.value} value={s.value}>
-                        {s.label}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft" />
-                </div>
+            {/* Divider */}
+            <div className="h-5 w-px bg-line" aria-hidden />
 
-                {/* View toggle */}
-                <div className="hidden items-center rounded-full border border-line p-0.5 sm:flex">
-                  <ViewToggle active={view === "grid"} onClick={() => setView("grid")} label="Grid">
-                    <GridGlyph />
-                  </ViewToggle>
-                  <ViewToggle active={view === "list"} onClick={() => setView("list")} label="List">
-                    <ListGlyph />
-                  </ViewToggle>
-                </div>
-              </div>
-            </div>
+            {/* Product count */}
+            <p className="shrink-0 text-xs text-ink-soft">
+              <span className="font-semibold text-ink">{filtered.length}</span>{" "}
+              {filtered.length === 1 ? "product" : "products"}
+            </p>
 
-            {/* Active filter chips */}
-            {chips.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 border-t border-line pt-3">
-                {chips.map((chip) => (
-                  <button
-                    key={chip.key}
-                    type="button"
-                    onClick={() => update(chip.clear)}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-surface-alt px-3 py-1 text-xs font-medium text-ink transition hover:bg-[var(--color-gold-soft)]"
-                  >
-                    {chip.label}
-                    <CloseIcon className="h-3 w-3" />
-                  </button>
-                ))}
+            {/* Spacer */}
+            <div className="flex-1" />
+
+            {/* ── Expandable Search ── */}
+            <div ref={searchRef} className="relative flex items-center">
+              {/* Icon button — hidden when expanded */}
+              {!searchExpanded && (
                 <button
                   type="button"
-                  onClick={reset}
-                  className="ml-1 text-xs font-medium text-[var(--color-gold-dark)] hover:underline"
+                  onClick={() => setSearchExpanded(true)}
+                  aria-label="Search products"
+                  className="grid h-8 w-8 place-items-center rounded-lg text-ink-soft transition hover:bg-surface-alt hover:text-ink"
                 >
-                  Clear all
+                  <SearchIcon className="h-4 w-4" />
                 </button>
+              )}
+
+              {/* Expanding input */}
+              <div
+                className={cn(
+                  "overflow-hidden transition-all duration-300 ease-out",
+                  searchExpanded ? "w-48 opacity-100 sm:w-64" : "w-0 opacity-0"
+                )}
+              >
+                <div className="relative">
+                  <SearchIcon className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-soft" />
+                  <input
+                    ref={searchInputRef}
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    placeholder="Search…"
+                    aria-label="Search products"
+                    className="h-8 w-full rounded-lg border border-[var(--color-gold)]/50 bg-surface-alt pl-8 pr-8 text-xs text-ink placeholder:text-ink-soft focus:border-[var(--color-gold)] focus:bg-white focus:outline-none"
+                  />
+                  {searchInput ? (
+                    <button
+                      type="button"
+                      onClick={() => { setSearchInput(""); }}
+                      aria-label="Clear search"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-soft hover:text-ink"
+                    >
+                      <CloseIcon className="h-3.5 w-3.5" />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setSearchExpanded(false)}
+                      aria-label="Close search"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-soft hover:text-ink"
+                    >
+                      <CloseIcon className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                </div>
               </div>
-            )}
+            </div>
+
+            {/* Sort dropdown — premium custom component */}
+            <SortDropdown value={sort} onChange={setSort} />
+
+            {/* View toggle */}
+            <div className="hidden shrink-0 items-center rounded-lg border border-line p-0.5 sm:flex">
+              <ViewToggle active={view === "grid"} onClick={() => setView("grid")} label="Grid">
+                <GridGlyph />
+              </ViewToggle>
+              <ViewToggle active={view === "list"} onClick={() => setView("list")} label="List">
+                <ListGlyph />
+              </ViewToggle>
+            </div>
           </div>
 
-          {/* Results */}
-          <div className="mt-6">
+          {/* Active filter chips */}
+          {chips.length > 0 && (
+            <div className="mt-2 flex flex-wrap items-center gap-1.5">
+              {chips.map((chip) => (
+                <button
+                  key={chip.key}
+                  type="button"
+                  onClick={() => update(chip.clear)}
+                  className="inline-flex items-center gap-1 rounded-full bg-surface-alt px-2.5 py-1 text-[11px] font-medium text-ink transition hover:bg-[var(--color-gold-soft)]"
+                >
+                  {chip.label}
+                  <CloseIcon className="h-3 w-3" />
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={reset}
+                className="text-[11px] font-medium text-[var(--color-gold-dark)] hover:underline"
+              >
+                Clear all
+              </button>
+            </div>
+          )}
+
+          {/* ── Product Grid / List ── */}
+          <div className="mt-3">
             {filtered.length === 0 ? (
               <EmptyState onReset={reset} />
             ) : view === "grid" ? (
-              <div className="grid grid-cols-2 gap-x-5 gap-y-9 sm:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 xl:grid-cols-4">
                 {shown.map((p) => (
                   <ProductCard key={p.id} product={p} view="grid" onQuickView={setQuickView} />
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {shown.map((p) => (
                   <ProductCard key={p.id} product={p} view="list" onQuickView={setQuickView} />
                 ))}
@@ -268,10 +360,10 @@ export function ShopView({
 
             {/* Infinite-scroll sentinel */}
             {visible < filtered.length && (
-              <div ref={sentinel} className="mt-10">
+              <div ref={sentinel} className="mt-8">
                 <div
                   className={cn(
-                    "grid gap-x-5 gap-y-9 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4",
+                    "grid gap-x-4 gap-y-7 grid-cols-2 sm:grid-cols-3 xl:grid-cols-4",
                     view === "list" && "grid-cols-1 sm:grid-cols-1 xl:grid-cols-1",
                   )}
                 >
@@ -428,8 +520,18 @@ function buildChips(
       clear: { collections: f.collections.filter((x) => x !== c) },
     });
   });
-  if (f.search) chips.push({ key: "search", label: `“${f.search}”`, clear: { search: "" } });
+  if (f.search) chips.push({ key: "search", label: `"${f.search}"`, clear: { search: "" } });
   return chips;
+}
+
+// ── Sub-components ──
+
+function FilterIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
+      <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+    </svg>
+  );
 }
 
 function ViewToggle({
@@ -450,7 +552,7 @@ function ViewToggle({
       aria-label={`${label} view`}
       aria-pressed={active}
       className={cn(
-        "grid h-9 w-9 place-items-center rounded-full transition",
+        "grid h-7 w-7 place-items-center rounded-md transition",
         active ? "bg-[var(--color-gold)] text-white shadow-sm" : "text-ink-soft hover:text-ink",
       )}
     >
@@ -461,7 +563,7 @@ function ViewToggle({
 
 function GridGlyph() {
   return (
-    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor" aria-hidden>
+    <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
       <rect x="2" y="2" width="7" height="7" rx="1.5" />
       <rect x="11" y="2" width="7" height="7" rx="1.5" />
       <rect x="2" y="11" width="7" height="7" rx="1.5" />
@@ -472,7 +574,7 @@ function GridGlyph() {
 
 function ListGlyph() {
   return (
-    <svg viewBox="0 0 20 20" className="h-4 w-4" fill="currentColor" aria-hidden>
+    <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
       <rect x="2" y="3" width="16" height="3.5" rx="1.5" />
       <rect x="2" y="8.25" width="16" height="3.5" rx="1.5" />
       <rect x="2" y="13.5" width="16" height="3.5" rx="1.5" />
