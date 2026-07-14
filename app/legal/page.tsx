@@ -1,6 +1,18 @@
 import { Section } from "@/components/ui/Section";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Terms & Conditions" };
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Read our terms and conditions for using our website and purchasing products.",
+  openGraph: {
+    title: "Terms & Conditions",
+    description: "Read our terms and conditions for using our website and purchasing products.",
+  },
+  twitter: {
+    title: "Terms & Conditions",
+    description: "Read our terms and conditions for using our website and purchasing products.",
+  },
+};
 
 const SECTIONS = [
   {

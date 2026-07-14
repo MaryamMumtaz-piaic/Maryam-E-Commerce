@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Cookie Policy" };
+export const metadata: Metadata = {
+  title: "Cookie Policy",
+  description: "Understand how we use cookies to improve your shopping experience.",
+  openGraph: {
+    title: "Cookie Policy",
+    description: "Understand how we use cookies to improve your shopping experience.",
+  },
+  twitter: {
+    title: "Cookie Policy",
+    description: "Understand how we use cookies to improve your shopping experience.",
+  },
+};
 
 export default function CookiesPage() {
   return (

@@ -2,8 +2,20 @@ import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { TruckIcon, ShieldIcon, ChatIcon, ArrowRight, SparkleIcon, CartIcon, UserIcon } from "@/components/ui/icons";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Help Center" };
+export const metadata: Metadata = {
+  title: "Help Center",
+  description: "Find support topics, track orders, and get in touch with our team.",
+  openGraph: {
+    title: "Help Center",
+    description: "Find support topics, track orders, and get in touch with our team.",
+  },
+  twitter: {
+    title: "Help Center",
+    description: "Find support topics, track orders, and get in touch with our team.",
+  },
+};
 
 const TOPICS = [
   { icon: TruckIcon, title: "Shipping & Delivery", text: "Rates, timelines, and how to track your parcel.", href: "/shipping" },

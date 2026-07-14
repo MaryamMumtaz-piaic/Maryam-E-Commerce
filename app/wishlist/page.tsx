@@ -1,7 +1,19 @@
 import { Section } from "@/components/ui/Section";
 import { WishlistView } from "@/components/cart/WishlistView";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Wishlist" };
+export const metadata: Metadata = {
+  title: "Wishlist",
+  description: "Manage your saved items and shop your favorites later.",
+  openGraph: {
+    title: "Wishlist",
+    description: "Manage your saved items and shop your favorites later.",
+  },
+  twitter: {
+    title: "Wishlist",
+    description: "Manage your saved items and shop your favorites later.",
+  },
+};
 
 export default function WishlistPage() {
   return (

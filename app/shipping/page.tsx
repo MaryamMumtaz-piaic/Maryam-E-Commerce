@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Shipping Information" };
+export const metadata: Metadata = {
+  title: "Shipping Information",
+  description: "Read about our delivery options, processing times, and free shipping rates.",
+  openGraph: {
+    title: "Shipping Information",
+    description: "Read about our delivery options, processing times, and free shipping rates.",
+  },
+  twitter: {
+    title: "Shipping Information",
+    description: "Read about our delivery options, processing times, and free shipping rates.",
+  },
+};
 
 export default function ShippingPage() {
   return (

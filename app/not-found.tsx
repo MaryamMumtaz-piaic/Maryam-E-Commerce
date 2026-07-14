@@ -1,4 +1,18 @@
 import { ButtonLink } from "@/components/ui/Button";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The page you are looking for does not exist or has been moved.",
+  openGraph: {
+    title: "Page Not Found",
+    description: "The page you are looking for does not exist or has been moved.",
+  },
+  twitter: {
+    title: "Page Not Found",
+    description: "The page you are looking for does not exist or has been moved.",
+  },
+};
 
 export default function NotFound() {
   return (

@@ -1,6 +1,18 @@
 import { CheckoutSuccess } from "@/components/checkout/CheckoutSuccess";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Order confirmed" };
+export const metadata: Metadata = {
+  title: "Checkout Success",
+  description: "Thank you for your order! Your purchase has been confirmed.",
+  openGraph: {
+    title: "Checkout Success",
+    description: "Thank you for your order! Your purchase has been confirmed.",
+  },
+  twitter: {
+    title: "Checkout Success",
+    description: "Thank you for your order! Your purchase has been confirmed.",
+  },
+};
 
 export default async function CheckoutSuccessPage({
   searchParams,

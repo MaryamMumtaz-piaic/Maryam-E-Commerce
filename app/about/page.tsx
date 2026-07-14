@@ -2,8 +2,20 @@ import Image from "next/image";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, SparkleIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
+import type { Metadata } from "next";
 
-export const metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn about Maryam — our mission to deliver fewer, better things made to last.",
+  openGraph: {
+    title: "About",
+    description: "Learn about Maryam — our mission to deliver fewer, better things made to last.",
+  },
+  twitter: {
+    title: "About",
+    description: "Learn about Maryam — our mission to deliver fewer, better things made to last.",
+  },
+};
 
 const VALUES = [
   { icon: SparkleIcon, title: "Considered design", text: "Every piece is designed with restraint and built to feel right in daily life." },

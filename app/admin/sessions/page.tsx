@@ -1,8 +1,20 @@
 import { getActiveSessions } from "@/lib/admin-data";
 import { isDbConfigured } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Admin · Sessions" };
+export const metadata: Metadata = {
+  title: "Admin Sessions",
+  description: "Monitor active customer sessions and system logins in real-time.",
+  openGraph: {
+    title: "Admin Sessions",
+    description: "Monitor active customer sessions and system logins in real-time.",
+  },
+  twitter: {
+    title: "Admin Sessions",
+    description: "Monitor active customer sessions and system logins in real-time.",
+  },
+};
 
 export default async function AdminSessionsPage() {
   const sessions = await getActiveSessions();

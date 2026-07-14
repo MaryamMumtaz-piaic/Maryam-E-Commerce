@@ -1,8 +1,20 @@
 import { getAdminOrders } from "@/lib/admin-data";
 import { OrderStatusControl } from "@/components/admin/OrderStatusControl";
 import { formatPrice, formatDate } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Admin · Orders" };
+export const metadata: Metadata = {
+  title: "Admin Orders",
+  description: "Monitor purchases and update fulfillment status.",
+  openGraph: {
+    title: "Admin Orders",
+    description: "Monitor purchases and update fulfillment status.",
+  },
+  twitter: {
+    title: "Admin Orders",
+    description: "Monitor purchases and update fulfillment status.",
+  },
+};
 
 export default async function AdminOrdersPage() {
   const orders = await getAdminOrders(100);

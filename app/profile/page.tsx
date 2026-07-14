@@ -2,8 +2,20 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ProfileForm } from "@/components/account/ProfileForm";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Profile" };
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Manage your account profile details and settings.",
+  openGraph: {
+    title: "Profile",
+    description: "Manage your account profile details and settings.",
+  },
+  twitter: {
+    title: "Profile",
+    description: "Manage your account profile details and settings.",
+  },
+};
 
 export default async function ProfilePage() {
   const session = await auth();

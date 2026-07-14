@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Returns & Refunds" };
+export const metadata: Metadata = {
+  title: "Returns & Refunds",
+  description: "Learn about our straightforward 30-day return policy and refunds process.",
+  openGraph: {
+    title: "Returns & Refunds",
+    description: "Learn about our straightforward 30-day return policy and refunds process.",
+  },
+  twitter: {
+    title: "Returns & Refunds",
+    description: "Learn about our straightforward 30-day return policy and refunds process.",
+  },
+};
 
 export default function ReturnsPage() {
   return (

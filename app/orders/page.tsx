@@ -5,8 +5,20 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { OrderStatusBadge } from "@/components/admin/OrderStatusBadge";
 import { formatPrice, formatDate } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Your orders" };
+export const metadata: Metadata = {
+  title: "Your Orders",
+  description: "View your purchase history, order status, and tracking information.",
+  openGraph: {
+    title: "Your Orders",
+    description: "View your purchase history, order status, and tracking information.",
+  },
+  twitter: {
+    title: "Your Orders",
+    description: "View your purchase history, order status, and tracking information.",
+  },
+};
 
 export default async function OrdersPage() {
   const session = await auth();

@@ -1,7 +1,19 @@
 import { Section } from "@/components/ui/Section";
 import { CartView } from "@/components/cart/CartView";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Cart" };
+export const metadata: Metadata = {
+  title: "Cart",
+  description: "View and manage the items in your shopping cart.",
+  openGraph: {
+    title: "Cart",
+    description: "View and manage the items in your shopping cart.",
+  },
+  twitter: {
+    title: "Cart",
+    description: "View and manage the items in your shopping cart.",
+  },
+};
 
 export default function CartPage() {
   return (

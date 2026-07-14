@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Privacy Policy" };
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Learn how we protect and manage your personal data and privacy.",
+  openGraph: {
+    title: "Privacy Policy",
+    description: "Learn how we protect and manage your personal data and privacy.",
+  },
+  twitter: {
+    title: "Privacy Policy",
+    description: "Learn how we protect and manage your personal data and privacy.",
+  },
+};
 
 export default function PrivacyPage() {
   return (

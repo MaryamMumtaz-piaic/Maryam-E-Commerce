@@ -2,8 +2,20 @@ import Image from "next/image";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, SparkleIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Founder" };
+export const metadata: Metadata = {
+  title: "Founder",
+  description: "Meet Maryam Mumtaz, the founder of Maryam, and learn about the principles that drive our work.",
+  openGraph: {
+    title: "Founder",
+    description: "Meet Maryam Mumtaz, the founder of Maryam, and learn about the principles that drive our work.",
+  },
+  twitter: {
+    title: "Founder",
+    description: "Meet Maryam Mumtaz, the founder of Maryam, and learn about the principles that drive our work.",
+  },
+};
 
 const PRINCIPLES = [
   { icon: SparkleIcon, title: "Intelligent by design", text: "Systems that reduce manual work and let people focus on what matters." },

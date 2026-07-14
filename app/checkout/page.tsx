@@ -1,8 +1,20 @@
 import { auth } from "@/auth";
 import { Section } from "@/components/ui/Section";
 import { CheckoutView } from "@/components/checkout/CheckoutView";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Checkout" };
+export const metadata: Metadata = {
+  title: "Checkout",
+  description: "Complete your order with our secure checkout process.",
+  openGraph: {
+    title: "Checkout",
+    description: "Complete your order with our secure checkout process.",
+  },
+  twitter: {
+    title: "Checkout",
+    description: "Complete your order with our secure checkout process.",
+  },
+};
 
 export default async function CheckoutPage() {
   const session = await auth();

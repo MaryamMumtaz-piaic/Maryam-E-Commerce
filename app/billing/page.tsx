@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Billing Information" };
+export const metadata: Metadata = {
+  title: "Billing Information",
+  description: "Learn about billing procedures, invoicing, and taxes at Maryam.",
+  openGraph: {
+    title: "Billing Information",
+    description: "Learn about billing procedures, invoicing, and taxes at Maryam.",
+  },
+  twitter: {
+    title: "Billing Information",
+    description: "Learn about billing procedures, invoicing, and taxes at Maryam.",
+  },
+};
 
 export default function BillingPage() {
   return (

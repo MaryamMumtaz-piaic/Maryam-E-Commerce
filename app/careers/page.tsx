@@ -1,8 +1,20 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRight, SparkleIcon, ShieldIcon, TruckIcon } from "@/components/ui/icons";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Careers" };
+export const metadata: Metadata = {
+  title: "Careers",
+  description: "Join the Maryam team. Explore our open positions and career opportunities.",
+  openGraph: {
+    title: "Careers",
+    description: "Join the Maryam team. Explore our open positions and career opportunities.",
+  },
+  twitter: {
+    title: "Careers",
+    description: "Join the Maryam team. Explore our open positions and career opportunities.",
+  },
+};
 
 const PERKS = [
   { icon: SparkleIcon, title: "Meaningful work", text: "Build products used by thousands, with real ownership over what you ship." },

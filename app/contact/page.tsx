@@ -11,10 +11,19 @@ import {
   XIcon,
   LinkedInIcon,
 } from "@/components/ui/icons";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Maryam Shop — order support, product questions, or partnerships.",
+  description: "Get in touch with Maryam — order support, product questions, or partnerships.",
+  openGraph: {
+    title: "Contact",
+    description: "Get in touch with Maryam — order support, product questions, or partnerships.",
+  },
+  twitter: {
+    title: "Contact",
+    description: "Get in touch with Maryam — order support, product questions, or partnerships.",
+  },
 };
 
 const DETAILS = [

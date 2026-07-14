@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Cancellation Policy" };
+export const metadata: Metadata = {
+  title: "Cancellation Policy",
+  description: "Read our terms for canceling orders before they ship.",
+  openGraph: {
+    title: "Cancellation Policy",
+    description: "Read our terms for canceling orders before they ship.",
+  },
+  twitter: {
+    title: "Cancellation Policy",
+    description: "Read our terms for canceling orders before they ship.",
+  },
+};
 
 export default function CancellationPage() {
   return (

@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Secure Checkout" };
+export const metadata: Metadata = {
+  title: "Secure Checkout",
+  description: "Learn how we protect your personal and payment details during checkout.",
+  openGraph: {
+    title: "Secure Checkout",
+    description: "Learn how we protect your personal and payment details during checkout.",
+  },
+  twitter: {
+    title: "Secure Checkout",
+    description: "Learn how we protect your personal and payment details during checkout.",
+  },
+};
 
 export default function SecureCheckoutPage() {
   return (

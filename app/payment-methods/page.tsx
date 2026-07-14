@@ -1,6 +1,18 @@
 import { PolicyPage } from "@/components/ui/PolicyPage";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Payment Methods" };
+export const metadata: Metadata = {
+  title: "Payment Methods",
+  description: "Explore the secure payment options available for your purchases.",
+  openGraph: {
+    title: "Payment Methods",
+    description: "Explore the secure payment options available for your purchases.",
+  },
+  twitter: {
+    title: "Payment Methods",
+    description: "Explore the secure payment options available for your purchases.",
+  },
+};
 
 export default function PaymentMethodsPage() {
   return (

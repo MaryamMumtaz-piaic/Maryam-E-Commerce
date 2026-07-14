@@ -13,12 +13,42 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   title: {
-    default: "Maryam — Considered Goods",
-    template: "%s · Maryam",
+    default: "Maryam / Home",
+    template: "Maryam / %s",
   },
   description:
     "Maryam is a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
   keywords: ["Maryam", "ecommerce", "apparel", "accessories", "home goods"],
+  openGraph: {
+    title: {
+      default: "Maryam / Home",
+      template: "Maryam / %s",
+    },
+    description:
+      "Maryam is a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
+    url: "https://maryam-piaic.vercel.app",
+    siteName: "Maryam",
+    images: [
+      {
+        url: "https://picsum.photos/seed/maryam-og/1200/630",
+        width: 1200,
+        height: 630,
+        alt: "Maryam Store",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "Maryam / Home",
+      template: "Maryam / %s",
+    },
+    description:
+      "Maryam is a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
+    images: ["https://picsum.photos/seed/maryam-og/1200/630"],
+  },
 };
 
 export default async function RootLayout({

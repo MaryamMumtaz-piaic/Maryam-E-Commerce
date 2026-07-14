@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/lib/store/cart";
 import { cn, formatPrice } from "@/lib/utils";
+import { CartIcon } from "@/components/ui/icons";
 
 // ── SVG Icons ────────────────────────────────────────────────────────────────
 

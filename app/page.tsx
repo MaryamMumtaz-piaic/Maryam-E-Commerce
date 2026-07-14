@@ -9,6 +9,21 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { SearchBar } from "@/components/layout/SearchBar";
 import { ArrowRight } from "@/components/ui/icons";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Welcome to Maryam — a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
+  openGraph: {
+    title: "Home",
+    description: "Welcome to Maryam — a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
+  },
+  twitter: {
+    title: "Home",
+    description: "Welcome to Maryam — a curated store of refined apparel, footwear, accessories, and home goods. Timeless design, premium materials.",
+  },
+};
+
 
 // Fixed hero image standard: every slide delivered at identical 16:9 dimensions,
 // auto-cropped to the most relevant region so any source image fits without distortion.

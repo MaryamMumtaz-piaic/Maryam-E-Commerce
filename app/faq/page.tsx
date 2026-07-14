@@ -1,7 +1,19 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { FaqAccordion, type FaqGroup } from "@/components/faq/FaqAccordion";
+import type { Metadata } from "next";
 
-export const metadata = { title: "FAQ" };
+export const metadata: Metadata = {
+  title: "FAQ",
+  description: "Frequently Asked Questions about orders, shipping, returns, and payments.",
+  openGraph: {
+    title: "FAQ",
+    description: "Frequently Asked Questions about orders, shipping, returns, and payments.",
+  },
+  twitter: {
+    title: "FAQ",
+    description: "Frequently Asked Questions about orders, shipping, returns, and payments.",
+  },
+};
 
 const GROUPS: FaqGroup[] = [
   {

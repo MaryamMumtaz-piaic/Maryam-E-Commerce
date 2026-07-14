@@ -3,8 +3,20 @@ import { getAdminStats, getAdminOrders } from "@/lib/admin-data";
 import { isDbConfigured } from "@/lib/prisma";
 import { OrderStatusBadge } from "@/components/admin/OrderStatusBadge";
 import { formatPrice, formatDate } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Admin · Overview" };
+export const metadata: Metadata = {
+  title: "Admin Overview",
+  description: "Maryam store administration overview and business performance metrics.",
+  openGraph: {
+    title: "Admin Overview",
+    description: "Maryam store administration overview and business performance metrics.",
+  },
+  twitter: {
+    title: "Admin Overview",
+    description: "Maryam store administration overview and business performance metrics.",
+  },
+};
 
 export default async function AdminOverview() {
   const [stats, orders] = await Promise.all([getAdminStats(), getAdminOrders(6)]);

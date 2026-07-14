@@ -3,8 +3,20 @@ import Link from "next/link";
 import { getProducts } from "@/lib/data";
 import { ImportAgentPanel } from "@/components/admin/ImportAgentPanel";
 import { formatPrice } from "@/lib/utils";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Admin · Products" };
+export const metadata: Metadata = {
+  title: "Admin Products",
+  description: "Browse, filter, and import products for the Maryam store catalog.",
+  openGraph: {
+    title: "Admin Products",
+    description: "Browse, filter, and import products for the Maryam store catalog.",
+  },
+  twitter: {
+    title: "Admin Products",
+    description: "Browse, filter, and import products for the Maryam store catalog.",
+  },
+};
 
 export default async function AdminProductsPage({
   searchParams,

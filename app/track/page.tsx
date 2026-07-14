@@ -1,7 +1,19 @@
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { OrderTracker } from "@/components/track/OrderTracker";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Order Tracking" };
+export const metadata: Metadata = {
+  title: "Order Tracking",
+  description: "Enter your order number and email to check your delivery status in real-time.",
+  openGraph: {
+    title: "Order Tracking",
+    description: "Enter your order number and email to check your delivery status in real-time.",
+  },
+  twitter: {
+    title: "Order Tracking",
+    description: "Enter your order number and email to check your delivery status in real-time.",
+  },
+};
 
 export default function TrackPage() {
   return (
